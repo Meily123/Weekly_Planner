@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from .views import cobaTemplate
+from .views import cobaTemplate, CreateWeeklyTask, ListViewWeeklyTask, DeleteView
 
 urlpatterns = [
-    path('', cobaTemplate.as_view())
+    path('', ListViewWeeklyTask.as_view()),
+    path('create', CreateWeeklyTask.as_view(), name='create'),
+    path('delete/<int:pk>', DeleteView.as_view(), name='delete')
 ]
