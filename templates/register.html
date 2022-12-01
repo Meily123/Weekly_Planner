@@ -1,13 +1,30 @@
-<h1>Register</h1>
+{% extends 'BASE.html' %}
+
+{% block content %}
+
+<style>
+    .container {
+        margin-top: 73px;
+        /* height: 573px; */
+        height: 500px;
+        /* background-color: whitesmoke; */
+    }
+</style>
+
+<div class="container col-7">
+    <h1>Register</h1>
 
 
-<form method="POST" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="register now">
-</form>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="register now">
+    </form>
 
-<p>
-    already have an account?
-    <a href="{% url 'task:login' %}">login</a>
-</p>
+    <p>
+        already have an account?
+        <a href="{% url 'task:login' %}">login</a>
+    </p>
+</div>
+    
+{% endblock %}
