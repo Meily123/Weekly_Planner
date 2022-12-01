@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponse
 
 class cobaTemplate(TemplateView):
-    template_name = 'test.html'
+    template_name = 'form_edit.html'
 
 
 # Task CRUD
@@ -61,3 +61,5 @@ class DetailWeeklyTask(View):
 
         }
         return JsonResponse(context)
+
+
