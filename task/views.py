@@ -111,7 +111,6 @@ class RegisterPage(FormView):
     
 
     def get(self, *args, **kwargs):
-        print('get here')
         if self.request.user.is_authenticated:
             return redirect('task:list')
         return super(RegisterPage, self).get(*args, **kwargs)
