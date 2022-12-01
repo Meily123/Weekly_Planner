@@ -49,9 +49,10 @@
     }
 </style>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <input type="hidden" id="url-delete">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Data</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -61,7 +62,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Sure</button>
+                <a href="javascript:void(0);" type="submit" class="btn btn-danger btn-block" id="btn-delete">YES</a>
             </div>
         </div>
     </div>
@@ -80,7 +81,7 @@
             {% for i in monday %}
             <div class="d-content">
                 <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
             {% endfor %}
@@ -93,20 +94,20 @@
             {% for i in tuesday %}
             <div class="d-content">
                 <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
             {% endfor %}
         </div>
 
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+            <button type="button" class="btn d-title" data-bs-toggle="modal" data-id={{i.id}} data-bs-target="#addModal">
                 WEDNESDAY
             </button>
             {% for i in wednesday %}
             <div class="d-content">
                 <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
             {% endfor %}
@@ -119,7 +120,7 @@
             {% for i in thursday %}
             <div class="d-content">
                 <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
             {% endfor %}
@@ -135,7 +136,7 @@
             {% for i in friday %}
             <div class="d-content">
                 <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
             {% endfor %}
@@ -148,7 +149,7 @@
             {% for i in saturday %}
             <div class="d-content">
                 <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
             {% endfor %}
@@ -161,7 +162,7 @@
             {% for i in sunday %}
             <div class="d-content">
                 <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
             {% endfor %}
@@ -174,7 +175,7 @@
             
             <div class="d-content">
                 <div class="d-content-text">ISI</div>
-                <button type="button" class="gg-remove d-content-delete" data-bs-toggle="modal"
+                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                     data-bs-target="#deleteModal"></button>
             </div>
         </div>
@@ -211,7 +212,31 @@ function Create(){
     $('#addModal').modal('hide');
     $("#formCreateTask")[0].reset();
     window.location.reload();
-}    
+};
+$('body').on('click', '.btn-delete', function() {
+    url = `{% url 'task:delete' pk=0 %}`;
+    id = $(this).attr('data-id');
+    $('#url-delete').val(url.replace("0", id));
+    console.log(url);
+});
+
+$('#btn-delete').on('click', function() {
+    var urlTemp = $('#url-delete').val();
+    $.ajax({
+        url: urlTemp,
+        method: 'post',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+        },
+    })
+        .done(function(data) {
+            $('.modal-delete').modal('hide');
+            window.location.reload();
+    })
+        .fail(function(e) {
+            $('.modal-delete').modal('hide');
+    }); 
+});
 </script>
 
 {% endblock %}

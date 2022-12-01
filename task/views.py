@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView, View
 from task.models import Task
+from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponse
 
 class cobaTemplate(TemplateView):
@@ -46,6 +47,8 @@ class ListViewWeeklyTask(View):
 
 class DeleteViewWeeklyPlanner(DeleteView):
     model = Task
+    success_url = reverse_lazy('task:list')
+
             
 
 
