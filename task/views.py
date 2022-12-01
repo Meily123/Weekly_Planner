@@ -42,11 +42,11 @@ class ListViewWeeklyTask(View):
             cumulative_progress += int(i.initial)/int(i.target) * (i.weight/max_weight)
             date[i.date.weekday()].append(i)
         
-        cumulative_progress /= allTask.count()
+        cumulative_progress /= max(1,allTask.count())
         
 
         context = {
-            'score': round(cumulative_progress, 2)* 100,
+            'score': round(cumulative_progress * 100, 2),
             'monday': date[0],
             'tuesday': date[1],
             'wednesday': date[2],
@@ -69,7 +69,7 @@ class DetailWeeklyTask(View):
         context = {
             'date' : task.date,
             'title' : task.title,
-            'progress' : round(int(task.initial)/int(task.target), 2) * 100,
+            'progress' : round(int(task.initial)/int(task.target) * 100, 2),
             'weight' : task.weight
 
         }

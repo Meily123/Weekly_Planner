@@ -98,6 +98,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <input type="hidden" id="url-detail">
+            <input type="hidden" id="url-edit">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="detailModalLabel">Detail</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -114,6 +115,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary modal-detail-exit" data-bs-dismiss="modal">Exit</button>
+                <button class="btn btn-secondary modal-detail-edit">Edit</button>
             </div>
         </div>
     </div>
@@ -135,7 +137,6 @@
                 {% for i in monday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -153,7 +154,6 @@
             {% for i in tuesday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -171,7 +171,6 @@
                 {% for i in wednesday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -189,7 +188,6 @@
                 {% for i in thursday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -210,7 +208,6 @@
                 {% for i in friday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -228,7 +225,6 @@
                 {% for i in saturday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -246,7 +242,6 @@
                 {% for i in sunday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -313,8 +308,14 @@ $('.modal-detail-exit').on('click', function() {
 
 $('body').on('click', '.btn-detail', function() {
     let id = $(this).attr('data-id');
+    url = `{% url 'task:update' pk=0 %}`;
+    $('#url-edit').val(url.replace("0", id));
     detailWeightRule(id);
 });
+
+$('.modal-detail-edit').on('click', function() {
+    window.location.href = $('#url-edit').val();
+})
 
 function detailWeightRule(id) {
     url = `{% url 'task:detail' pk="0" %}`
