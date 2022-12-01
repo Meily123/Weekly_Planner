@@ -162,24 +162,31 @@
     }
 </style>
 
+{% load crispy_forms_tags %} 
 <div class="container">
     <div class="main-block">
         <h1>Edit Data</h1>
-        <form action="/">
-            <label id="icon" for="name"><i class="fas fa-envelope"></i></label>
-            <input type="text" name="name" id="name" placeholder="Email" required />
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
 
-            <label id="icon" for="name"><i class="fas fa-user"></i></label>
-            <input type="text" name="name" id="name" placeholder="Name" required />
+            <div class="row">
+                {{ form.title |as_crispy_field}}
+            </div>
 
-            <label id="icon" for="name"><i class="fas fa-user"></i></label>
-            <input type="text" name="name" id="name" placeholder="Name" required />
+            <div class="row">
+                {{ form.date |as_crispy_field}}
+            </div>          
 
-            <label id="icon" for="name"><i class="fas fa-user"></i></label>
-            <input type="text" name="name" id="name" placeholder="Name" required />
+            <div class="row">
+                {{ form.initial |as_crispy_field}}
+            </div>
 
-            <label id="icon" for="name"><i class="fas fa-unlock-alt"></i></label>
-            <input type="password" name="name" id="name" placeholder="Password" required />
+            <div class="row">
+                {{ form.target |as_crispy_field}}
+            </div>
+
+            <div class="row">
+                {{ form.weight |as_crispy_field}}
+            </div>
 
             <div class="btn-block">
                 <button type="submit" href="/">Submit</button>

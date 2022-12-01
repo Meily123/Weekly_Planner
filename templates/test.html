@@ -74,6 +74,7 @@
     }
 </style>
 
+
 <div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -160,7 +161,7 @@
 
         <div class="d-container">
             <div class="judul">
-                <button type="button" class="btn d-title" data-bs-toggle="modal" data-id={{i.id}} data-bs-target="#addModal">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
                     WEDNESDAY
                 </button>
             </div>
@@ -205,6 +206,7 @@
                 {% for i in friday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
+                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -249,14 +251,12 @@
         <div class="d-container">
             <div class="judul">
                 <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
-                    NOTE
+                    SCORE
                 </button>
             </div>
             <div class="isian overflow-auto">
-                <div class="d-content">
-                    <div class="d-content-text">ISI</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                <div class="align-middle">
+                    <h1>{{score}} %</h1>
                 </div>
             </div>
         </div>

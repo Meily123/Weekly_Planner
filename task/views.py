@@ -32,9 +32,21 @@ class ListViewWeeklyTask(View):
     def get(self, request):
         allTask = Task.objects.all()
         date = [[],[],[],[],[],[],[]]
+        cumulative_progress = 0
+        max_weight = 1
+
         for i in allTask:
+            max_weight = max(max_weight, i.weight)
+        
+        for i in allTask:
+            cumulative_progress += int(i.initial)/int(i.target) * (i.weight/max_weight)
             date[i.date.weekday()].append(i)
+        
+        cumulative_progress /= allTask.count()
+        
+
         context = {
+            'score': round(cumulative_progress, 2)* 100,
             'monday': date[0],
             'tuesday': date[1],
             'wednesday': date[2],
@@ -44,6 +56,7 @@ class ListViewWeeklyTask(View):
             'sunday': date[6]
         }
         return render(request, 'test.html', context)
+
 
 class DeleteViewWeeklyPlanner(DeleteView):
     model = Task
@@ -61,5 +74,13 @@ class DetailWeeklyTask(View):
 
         }
         return JsonResponse(context)
+
+
+class UpdateWeeklyTask(UpdateView):
+    model = Task
+    template_name = 'form_edit.html'
+    fields = ['title', 'date', 'initial', 'target', 'weight']
+    success_url = reverse_lazy('task:list')
+
 
 
