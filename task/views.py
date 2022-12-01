@@ -1,12 +1,23 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView, View, DetailView
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView, View, DetailView, FormView
 from task.models import Task
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponse
 from task.form import TaskForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
-class cobaTemplate(TemplateView):
-    template_name = 'form_edit.html'
+# Create your views here.
+
+class customLoginView(LoginView):
+    template_name = "login.html"
+    fields = '__all__'
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        return reverse_lazy('task:list')
 
 
 # Task CRUD
@@ -14,6 +25,7 @@ class CreateWeeklyTask(View):
     def post(self, request):
         try:
             Task.objects.create(
+                user=self.request.user,
                 date=request.POST.get('date'),
                 title=request.POST.get('title'),
                 initial=request.POST.get('initial'),
@@ -31,7 +43,7 @@ class CreateWeeklyTask(View):
 
 class ListViewWeeklyTask(View):
     def get(self, request):
-        allTask = Task.objects.all()
+        allTask = Task.objects.filter(user=self.request.user)
         date = [[],[],[],[],[],[],[]]
         cumulative_progress = 0
         max_weight = 1
@@ -84,4 +96,23 @@ class UpdateWeeklyTask(UpdateView):
     success_url = reverse_lazy('task:list')
 
 
+class RegisterPage(FormView):
+    template_name = 'register.html'
+    form_class = UserCreationForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('task:list')
+
+    def form_valid(self, form):
+        print('form_valid')
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(RegisterPage, self).form_valid(form)
+    
+
+    def get(self, *args, **kwargs):
+        print('get here')
+        if self.request.user.is_authenticated:
+            return redirect('task:list')
+        return super(RegisterPage, self).get(*args, **kwargs)
 
