@@ -9,4 +9,4 @@ class TaskForm(forms.ModelForm):
     weight = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Name', 'style': 'width: 100%; margin-top:5px', 'class': 'form-control'}))
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = ['title', 'date', 'initial', 'target', 'weight']
