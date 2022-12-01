@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView, View
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView, View, DetailView
 from task.models import Task
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponse
@@ -49,6 +49,15 @@ class DeleteViewWeeklyPlanner(DeleteView):
     model = Task
     success_url = reverse_lazy('task:list')
 
-            
 
+class DetailWeeklyTask(View):
+    def get(self, request, pk):
+        task = Task.objects.get(id=pk)
+        context = {
+            'date' : task.date,
+            'title' : task.title,
+            'progress' : round(int(task.initial)/int(task.target), 2) * 100,
+            'weight' : task.weight
 
+        }
+        return JsonResponse(context)

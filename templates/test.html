@@ -93,6 +93,31 @@
     </div>
 </div>
 
+<div class="modal fade modal-detail" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <input type="hidden" id="url-detail">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="detailModalLabel">Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5><label class="col-form-label">Title</label><br></h5>
+                <span id="modal-detail-title">title</span><br>
+                <h5><label class="col-form-label">Date</label><br></h5>
+                <span id="modal-detail-date">date</span><br></h5>
+                <h5><label class="col-form-label">Progress</label><br></h5>
+                <span id="modal-detail-progress">progress</span>%<br>
+                <h5><label class="col-form-label">Weight</label><br></h5>
+                <span id="modal-detail-weight">weight</span><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-detail-exit" data-bs-dismiss="modal">Exit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     {% include 'modal_create.html' %}
 </div>
@@ -108,7 +133,7 @@
             <div class="isian overflow-auto">
                 {% for i in monday %}
                 <div class="d-content">
-                    <div class="d-content-text">{{i.title}}</div>
+                    <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -125,7 +150,7 @@
             <div class="isian overflow-auto">
             {% for i in tuesday %}
                 <div class="d-content">
-                    <div class="d-content-text">{{i.title}}</div>
+                    <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -142,7 +167,7 @@
             <div class="isian overflow-auto">
                 {% for i in wednesday %}
                 <div class="d-content">
-                    <div class="d-content-text">{{i.title}}</div>
+                    <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -159,7 +184,7 @@
             <div class="isian overflow-auto">
                 {% for i in thursday %}
                 <div class="d-content">
-                    <div class="d-content-text">{{i.title}}</div>
+                    <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -179,7 +204,7 @@
             <div class="isian overflow-auto">
                 {% for i in friday %}
                 <div class="d-content">
-                    <div class="d-content-text">{{i.title}}</div>
+                    <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -196,7 +221,7 @@
             <div class="isian overflow-auto">
                 {% for i in saturday %}
                 <div class="d-content">
-                    <div class="d-content-text">{{i.title}}</div>
+                    <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -213,7 +238,7 @@
             <div class="isian overflow-auto">
                 {% for i in sunday %}
                 <div class="d-content">
-                    <div class="d-content-text">{{i.title}}</div>
+                    <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -275,6 +300,31 @@ $('body').on('click', '.btn-delete', function() {
     $('#url-delete').val(url.replace("0", id));
     console.log(url);
 });
+
+$('.modal-detail-exit').on('click', function() {
+    $('.modal-detail').modal('hide');
+})
+
+$('body').on('click', '.btn-detail', function() {
+    let id = $(this).attr('data-id');
+    detailWeightRule(id);
+});
+
+function detailWeightRule(id) {
+    url = `{% url 'task:detail' pk="0" %}`
+    urlTemp = url.replace("0", id)
+    $.ajax({
+          url: urlTemp
+    })
+    .done(function(data) {
+        //var links = '';
+        $('#modal-detail-title').html(data.title);
+        $('#modal-detail-date').html(data.date);
+        $('#modal-detail-progress').html(data.progress);
+        $('#modal-detail-weight').html(data.weight);
+        $('.modal-detail').modal('show');
+    })
+}
 
 $('#btn-delete').on('click', function() {
     var urlTemp = $('#url-delete').val();
