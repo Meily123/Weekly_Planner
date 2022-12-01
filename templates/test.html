@@ -14,6 +14,11 @@
         height: 266px;
     }
 
+    .isian {
+        margin: 5px 0;
+        height: 210px;
+    }
+
     .d-container {
         width: 25%;
         /* background-color: blue; */
@@ -47,6 +52,26 @@
     .d-content-text {
         padding: auto 0;
     }
+
+        /* width */
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #555; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #333; 
+    }
 </style>
 
 <div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -75,108 +100,139 @@
 <div class="container">
     <div class="container-in">
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
-                MONDAY
-            </button>
-            {% for i in monday %}
-            <div class="d-content">
-                <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
+            <div class="judul">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+                    MONDAY
+                </button>
             </div>
-            {% endfor %}
+            <div class="isian overflow-auto">
+                {% for i in monday %}
+                <div class="d-content">
+                    <div class="d-content-text">{{i.title}}</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="d-container">
+            <div class="judul">
                 <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
                     TUESDAY
                 </button>
+            </div>
+            <div class="isian overflow-auto">
             {% for i in tuesday %}
-            <div class="d-content">
-                <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
-            </div>
+                <div class="d-content">
+                    <div class="d-content-text">{{i.title}}</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
             {% endfor %}
+            </div>
         </div>
 
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-id={{i.id}} data-bs-target="#addModal">
-                WEDNESDAY
-            </button>
-            {% for i in wednesday %}
-            <div class="d-content">
-                <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
+            <div class="judul">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-id={{i.id}} data-bs-target="#addModal">
+                    WEDNESDAY
+                </button>
             </div>
-            {% endfor %}
+            <div class="isian overflow-auto">
+                {% for i in wednesday %}
+                <div class="d-content">
+                    <div class="d-content-text">{{i.title}}</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
-                THURSDAY
-            </button>
-            {% for i in thursday %}
-            <div class="d-content">
-                <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
+            <div class="judul">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+                    THURSDAY
+                </button>
             </div>
-            {% endfor %}
+            <div class="isian overflow-auto">
+                {% for i in thursday %}
+                <div class="d-content">
+                    <div class="d-content-text">{{i.title}}</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
     
     <div class="container-in">
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
-                FRIDAY
-            </button>
-            {% for i in friday %}
-            <div class="d-content">
-                <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
+            <div class="judul">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+                    FRIDAY
+                </button>
             </div>
-            {% endfor %}
+            <div class="isian overflow-auto">
+                {% for i in friday %}
+                <div class="d-content">
+                    <div class="d-content-text">{{i.title}}</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
-                SATURDAY
-            </button>
-            {% for i in saturday %}
-            <div class="d-content">
-                <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
+            <div class="judul">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+                    SATURDAY
+                </button>
             </div>
-            {% endfor %}
+            <div class="isian overflow-auto">
+                {% for i in saturday %}
+                <div class="d-content">
+                    <div class="d-content-text">{{i.title}}</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
-                SUNDAY
-            </button>
-            {% for i in sunday %}
-            <div class="d-content">
-                <div class="d-content-text">{{i.title}}</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
+            <div class="judul">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+                    SUNDAY
+                </button>
             </div>
-            {% endfor %}
+            <div class="isian overflow-auto">
+                {% for i in sunday %}
+                <div class="d-content">
+                    <div class="d-content-text">{{i.title}}</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="d-container">
-            <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
-                NOTE
-            </button>
-            
-            <div class="d-content">
-                <div class="d-content-text">ISI</div>
-                <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                    data-bs-target="#deleteModal"></button>
+            <div class="judul">
+                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+                    NOTE
+                </button>
+            </div>
+            <div class="isian overflow-auto">
+                <div class="d-content">
+                    <div class="d-content-text">ISI</div>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"></button>
+                </div>
             </div>
         </div>
     </div>
