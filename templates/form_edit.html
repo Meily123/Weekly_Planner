@@ -2,12 +2,6 @@
 
 {% block content %}
 <style>
-    .container {
-        height: 573px;
-        background-color: whitesmoke;
-    }
-
-
     body,
     div,
     h1,
@@ -17,8 +11,6 @@
         padding: 0;
         margin: 0;
         outline: none;
-        /* font-size: 16px; */
-        /* color: #666; */
     }
 
     h1 {
@@ -148,11 +140,25 @@
     }
 
     button:hover {
-        background: #26a9e0;
+        background-color: white;
+        border-color: #333;
+        color: #333;
+    }
+
+    .container {
+        /* height: 573px; */
+        height: 520px;
+        /* background-color: whitesmoke; */
+    }
+
+    .container {
+        /* height: 573px; */
+        height: 520px;
+        /* background-color: whitesmoke; */
     }
 
     .main-block {
-        margin: auto auto;
+        margin-top: 50px;
     }
 </style>
 
@@ -160,14 +166,6 @@
     <div class="main-block">
         <h1>Edit Data</h1>
         <form action="/">
-            <!-- <hr>
-            <div class="account-type">
-                <input type="radio" value="none" id="radioOne" name="account" checked />
-                <label for="radioOne" class="radio">Personal</label>
-                <input type="radio" value="none" id="radioTwo" name="account" />
-                <label for="radioTwo" class="radio">Company</label>
-            </div>
-            <hr> -->
             <label id="icon" for="name"><i class="fas fa-envelope"></i></label>
             <input type="text" name="name" id="name" placeholder="Email" required />
 
