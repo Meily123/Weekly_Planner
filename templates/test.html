@@ -135,6 +135,7 @@
                 {% for i in monday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
+                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -152,6 +153,7 @@
             {% for i in tuesday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
+                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -169,6 +171,7 @@
                 {% for i in wednesday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
+                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -186,6 +189,7 @@
                 {% for i in thursday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
+                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -224,6 +228,7 @@
                 {% for i in saturday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
+                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
@@ -241,6 +246,7 @@
                 {% for i in sunday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
+                    <a href="{% url 'task:update' i.id %}">Edit</a>
                     <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
                         data-bs-target="#deleteModal"></button>
                 </div>
