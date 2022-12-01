@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from task.models import Task
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponse
+from task.form import TaskForm
 
 class cobaTemplate(TemplateView):
     template_name = 'form_edit.html'
@@ -78,8 +79,8 @@ class DetailWeeklyTask(View):
 
 class UpdateWeeklyTask(UpdateView):
     model = Task
+    form_class = TaskForm
     template_name = 'form_edit.html'
-    fields = ['title', 'date', 'initial', 'target', 'weight']
     success_url = reverse_lazy('task:list')
 
 
