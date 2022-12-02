@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import CreateWeeklyTask, ListViewWeeklyTask, DeleteViewWeeklyPlanner, DetailWeeklyTask, UpdateWeeklyTask, customLoginView, RegisterPage
+from .views import CreateWeeklyTask, ListViewWeeklyTask, DeleteViewWeeklyPlanner,grafikWeekly, DetailWeeklyTask, UpdateWeeklyTask, customLoginView, RegisterPage
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('accounts/login/', customLoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(next_page='task:login'), name='logout'),
     path('register/', RegisterPage.as_view(), name='register'),
+    path('grafik/',login_required(grafikWeekly.as_view()), name='grafik')
 ]
