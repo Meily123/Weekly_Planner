@@ -98,7 +98,7 @@
 <div class="status">
     {% if request.user.is_authenticated %}
     <div class="nama">
-        <h5>{{request.user}}</h5>
+        <a href="{% url 'task:grafik' %}"><h5>{{request.user}}</h5></a>
     </div>
     <a href="{% url 'task:logout' %}"><button type="button" class="btn btn-danger">Logout</button></a>
     {% else %}
