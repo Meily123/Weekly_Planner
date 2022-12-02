@@ -19,6 +19,11 @@
         height: 210px;
     }
 
+    .last {
+        margin: 5px 0;
+        height: 60px;
+    }
+
     .d-container {
         width: 25%;
         /* background-color: blue; */
@@ -53,24 +58,24 @@
         padding: auto 0;
     }
 
-        /* width */
+    /* width */
     ::-webkit-scrollbar {
-    width: 10px;
+        width: 10px;
     }
 
     /* Track */
     ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+        background: #f1f1f1;
     }
-    
+
     /* Handle */
     ::-webkit-scrollbar-thumb {
-    background: #555; 
+        background: #555;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-    background: #333; 
+        background: #333;
     }
 
     .status {
@@ -91,15 +96,18 @@
 </style>
 
 <div class="status">
-{% if request.user.is_authenticated %}
-    <div class="nama"><h5>{{request.user}}</h5></div>
+    {% if request.user.is_authenticated %}
+    <div class="nama">
+        <h5>{{request.user}}</h5>
+    </div>
     <a href="{% url 'task:logout' %}"><button type="button" class="btn btn-danger">Logout</button></a>
-{% else %}
+    {% else %}
     <a href="{% url 'task:login' %}">Login</a>
-{% endif %}
+    {% endif %}
 </div>
 
-<div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade modal-delete" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <input type="hidden" id="url-delete">
@@ -118,7 +126,8 @@
     </div>
 </div>
 
-<div class="modal fade modal-detail" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+<div class="modal fade modal-detail" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <input type="hidden" id="url-detail">
@@ -129,11 +138,14 @@
             </div>
             <div class="modal-body">
                 <h6><label class="col-form-label">Title : </label></h6>
-                <span id="modal-detail-title">title</span><hr>
+                <span id="modal-detail-title">title</span>
+                <hr>
                 <h6><label class="col-form-label">Date : </label></h6>
-                <span id="modal-detail-date">date</span><hr>
+                <span id="modal-detail-date">date</span>
+                <hr>
                 <h6><label class="col-form-label">Progress : </label></h6>
-                <span id="modal-detail-progress">progress </span>%<hr>
+                <span id="modal-detail-progress">progress </span>%
+                <hr>
                 <h6><label class="col-form-label">Weight : </label></h6>
                 <span id="modal-detail-weight">weight</span>
             </div>
@@ -161,8 +173,8 @@
                 {% for i in monday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}}
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
                 {% endfor %}
             </div>
@@ -175,13 +187,13 @@
                 </button>
             </div>
             <div class="isian overflow-auto">
-            {% for i in tuesday %}
+                {% for i in tuesday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}}
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
 
@@ -195,8 +207,8 @@
                 {% for i in wednesday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}}
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
                 {% endfor %}
             </div>
@@ -212,15 +224,15 @@
                 {% for i in thursday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}}
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-    
+
     <div class="container-in">
         <div class="d-container">
             <div class="judul">
@@ -232,8 +244,8 @@
                 {% for i in friday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}}
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
                 {% endfor %}
             </div>
@@ -249,8 +261,8 @@
                 {% for i in saturday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}}
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
                 {% endfor %}
             </div>
@@ -266,116 +278,127 @@
                 {% for i in sunday %}
                 <div class="d-content">
                     <div class="d-content-text btn-detail" data-id={{i.id}}>{{i.title}}</div>
-                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}} data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"></button>
+                    <button type="button" class="gg-remove d-content-delete btn-delete" data-id={{i.id}}
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
                 {% endfor %}
             </div>
         </div>
 
         <div class="d-container">
-            <div class="judul">
-                <button type="button" class="btn d-title" data-bs-toggle="modal" data-bs-target="#addModal">
+            <div class="judul last">
+                <button type="button" class="btn d-title">
                     Total Progress
                 </button>
             </div>
-            <div class="isian overflow-auto">
+            <div class="isian last overflow-auto">
                 <div class="align-middle" style="text-align: center;">
-                    <h1>{{score}} %</h1>
+                    <h2>{{score}} %</h2>
+                </div>
+            </div>
+            <div class="judul last">
+                <button type="button" class="btn d-title">
+                    Priority
+                </button>
+            </div>
+            <div class="isian last overflow-auto">
+                <div class="align-middle" style="text-align: center;">
+                    nama task (tanggal)
+                    <br>
+                    progres % of bobot
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 
 <script>
-function Create(){
-    let date = $("#InputDate").val();
-    let title = $("#InputTitle").val();
-    let weight = $("#InputWeight").val();
-    let initial = $("#InputInitial").val();
-    let target = $("#InputTarget").val();
-    $.ajax({
-            url: `{% url 'task:create' %}`,
-            method: 'post',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
-            },
-            data: {
-                date : date,
-                title : title,
-                initial : initial,
-                target : target,
-                weight : weight,
-            }
-    })
-    .done(function(data) {
-        console.log('done');
-    })
-    .fail(function(e) {
-        console.log('error');
+    function Create() {
+        let date = $("#InputDate").val();
+        let title = $("#InputTitle").val();
+        let weight = $("#InputWeight").val();
+        let initial = $("#InputInitial").val();
+        let target = $("#InputTarget").val();
+        $.ajax({
+                url: `{% url 'task:create' %}`,
+                method: 'post',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                },
+                data: {
+                    date: date,
+                    title: title,
+                    initial: initial,
+                    target: target,
+                    weight: weight,
+                }
+            })
+            .done(function (data) {
+                console.log('done');
+            })
+            .fail(function (e) {
+                console.log('error');
+            });
+        $('#addModal').modal('hide');
+        $("#formCreateTask")[0].reset();
+        window.location.reload();
+    };
+    $('body').on('click', '.btn-delete', function () {
+        url = `{% url 'task:delete' pk=0 %}`;
+        id = $(this).attr('data-id');
+        $('#url-delete').val(url.replace("0", id));
+        console.log(url);
     });
-    $('#addModal').modal('hide');
-    $("#formCreateTask")[0].reset();
-    window.location.reload();
-};
-$('body').on('click', '.btn-delete', function() {
-    url = `{% url 'task:delete' pk=0 %}`;
-    id = $(this).attr('data-id');
-    $('#url-delete').val(url.replace("0", id));
-    console.log(url);
-});
 
-$('.modal-detail-exit').on('click', function() {
-    $('.modal-detail').modal('hide');
-})
-
-$('body').on('click', '.btn-detail', function() {
-    let id = $(this).attr('data-id');
-    url = `{% url 'task:update' pk=0 %}`;
-    $('#url-edit').val(url.replace("0", id));
-    detailWeightRule(id);
-});
-
-$('.modal-detail-edit').on('click', function() {
-    window.location.href = $('#url-edit').val();
-})
-
-function detailWeightRule(id) {
-    url = `{% url 'task:detail' pk="0" %}`
-    urlTemp = url.replace("0", id)
-    $.ajax({
-          url: urlTemp
+    $('.modal-detail-exit').on('click', function () {
+        $('.modal-detail').modal('hide');
     })
-    .done(function(data) {
-        //var links = '';
-        $('#modal-detail-title').html(data.title);
-        $('#modal-detail-date').html(data.date);
-        $('#modal-detail-progress').html(data.progress);
-        $('#modal-detail-weight').html(data.weight);
-        $('.modal-detail').modal('show');
-    })
-}
 
-$('#btn-delete').on('click', function() {
-    var urlTemp = $('#url-delete').val();
-    $.ajax({
-        url: urlTemp,
-        method: 'post',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
-        },
-    })
-        .done(function(data) {
-            $('.modal-delete').modal('hide');
-            window.location.reload();
-    })
-        .fail(function(e) {
-            $('.modal-delete').modal('hide');
-    }); 
-});
+    $('body').on('click', '.btn-detail', function () {
+        let id = $(this).attr('data-id');
+        url = `{% url 'task:update' pk=0 %}`;
+        $('#url-edit').val(url.replace("0", id));
+        detailWeightRule(id);
+    });
 
+    $('.modal-detail-edit').on('click', function () {
+        window.location.href = $('#url-edit').val();
+    })
 
+    function detailWeightRule(id) {
+        url = `{% url 'task:detail' pk="0" %}`
+        urlTemp = url.replace("0", id)
+        $.ajax({
+                url: urlTemp
+            })
+            .done(function (data) {
+                //var links = '';
+                $('#modal-detail-title').html(data.title);
+                $('#modal-detail-date').html(data.date);
+                $('#modal-detail-progress').html(data.progress);
+                $('#modal-detail-weight').html(data.weight);
+                $('.modal-detail').modal('show');
+            })
+    }
+
+    $('#btn-delete').on('click', function () {
+        var urlTemp = $('#url-delete').val();
+        $.ajax({
+                url: urlTemp,
+                method: 'post',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+                },
+            })
+            .done(function (data) {
+                $('.modal-delete').modal('hide');
+                window.location.reload();
+            })
+            .fail(function (e) {
+                $('.modal-delete').modal('hide');
+            });
+    });
 </script>
 
 {% endblock %}
