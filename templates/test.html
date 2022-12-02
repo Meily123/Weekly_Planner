@@ -303,16 +303,12 @@
             </div>
             <div class="isian last overflow-auto">
                 <div class="align-middle" style="text-align: center;">
-                    nama task (tanggal)
+                    {{important_task.title}} ({{important_task.date}})
                     <br>
-                    progres % of bobot
+                    {{important_progress}} % of {{important_task.weight}}
                 </div>
             </div>
         </div>
-        {{important_task.title}}
-        {{important_task.date}}
-        {{important_progress}}
-        {{important_task.weight}}
     </div>
 </div>
 </div>
