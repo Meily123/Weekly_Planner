@@ -51,12 +51,35 @@ class ListViewWeeklyTask(View):
         for i in allTask:
             max_weight = max(max_weight, i.weight)
         
+        important = ''
+
+        days = {
+            0 : 'Monday',
+            1 : 'Tuesday',
+            2 : 'Wednesday',
+            3 : 'Thrusday',
+            4 : 'Friday',
+            5 : 'Saturday',
+            6 : 'Sunday'
+        }
+
+        max_bobot = 0
+        
         for i in allTask:
             cumulative_progress += int(i.initial)/int(i.target) * (i.weight/max_weight)
             date[i.date.weekday()].append(i)
+            if important == '':
+                important = i
+                max_bobot = i.weight
+                important_progress = round(int(i.initial)/int(i.target)*100, 20)
+                important_day = days[i.date.weekday()]
+            if i.weight > max_bobot:
+                important = i
+                max_bobot = i.weight
+                important_progress = round(int(i.initial)/int(i.target)*100, 20)
+                important_day = days[i.date.weekday()]
         
         cumulative_progress /= max(1,allTask.count())
-        
 
         context = {
             'score': round(cumulative_progress * 100, 2),
@@ -66,7 +89,10 @@ class ListViewWeeklyTask(View):
             'thursday': date[3],
             'friday': date[4],
             'saturday': date[5],
-            'sunday': date[6]
+            'sunday': date[6],
+            'important_task': important,
+            'important_progress' : important_progress,
+            'important_day' : important_day
         }
         return render(request, 'test.html', context)
 
@@ -115,3 +141,5 @@ class RegisterPage(FormView):
             return redirect('task:list')
         return super(RegisterPage, self).get(*args, **kwargs)
 
+class grafikWeekly(TemplateView):
+    template_name = 'grafik.html'
