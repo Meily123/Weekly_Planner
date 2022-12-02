@@ -1,0 +1,108 @@
+{% extends 'BASE.html' %}
+
+{% block content %}
+
+<style>
+    .container {
+        height: 543px;
+    }
+
+    .d-title {
+        width: 100%;
+        background-color: #333;
+        text-align: center;
+        border-style: solid;
+        border-color: white;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .d-title:hover {
+        background-color: white;
+        border-style: solid;
+        border-color: #333;
+        color: #333;
+    }
+
+    .mon, .tue, .wed, .thu, .fri, .sat, .sun, .total {
+        display: flex;
+        margin: 30px;
+    }
+
+    .tgl {
+        width: 200px;
+    }
+    .bar {
+        width: 1000px;
+    }
+</style>
+
+<div class="container">
+    <div class="mon">
+        <button type="button" class="btn d-title tgl">
+            MON
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 1000px;">
+            %
+        </button>
+    </div>
+
+    <div class="tue">
+        <button type="button" class="btn d-title tgl">
+            TUE
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 500px;">
+            %
+        </button>
+    </div>
+    <div class="wed">
+        <button type="button" class="btn d-title tgl">
+            WED
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 500px;">
+            %
+        </button>
+    </div>
+    <div class="thu">
+        <button type="button" class="btn d-title tgl">
+            THU
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 500px;">
+            %
+        </button>
+    </div>
+    <div class="fri">
+        <button type="button" class="btn d-title tgl">
+            FRI
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 500px;">
+            %
+        </button>
+    </div>
+    <div class="sat">
+        <button type="button" class="btn d-title tgl">
+            SAT
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 500px;">
+            %
+        </button>
+    </div>
+    <div class="sun">
+        <button type="button" class="btn d-title tgl">
+            SUN
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 500px;">
+            %
+        </button>
+    </div>
+    <div class="total">
+        <button type="button" class="btn d-title tgl">
+            TOTAL
+        </button>
+        <button type="button" class="btn d-title bar" style="width: 500px;">
+            %
+        </button>
+    </div>
+</div>
+
+{% endblock %}
