@@ -71,12 +71,12 @@ class ListViewWeeklyTask(View):
             if important == '':
                 important = i
                 max_bobot = i.weight
-                important_progress = round(int(i.initial)/int(i.target)*100, 20)
+                important_progress = round(int(i.initial)/int(i.target)*100, 2)
                 important_day = days[i.date.weekday()]
-            if i.weight > max_bobot:
+            if i.weight > max_bobot and (100 != round(int(i.initial)/int(i.target)*100, 2)):
                 important = i
                 max_bobot = i.weight
-                important_progress = round(int(i.initial)/int(i.target)*100, 20)
+                important_progress = round(int(i.initial)/int(i.target)*100, 2)
                 important_day = days[i.date.weekday()]
         
         cumulative_progress /= max(1,allTask.count())
@@ -141,5 +141,33 @@ class RegisterPage(FormView):
             return redirect('task:list')
         return super(RegisterPage, self).get(*args, **kwargs)
 
-class grafikWeekly(TemplateView):
-    template_name = 'grafik.html'
+class grafikWeekly(View):
+    def get(self, request):
+        allTask = Task.objects.filter(user=self.request.user)
+        date = [0,0,0,0,0,0,0]
+        jumlah = [0,0,0,0,0,0,0]
+        cumulative_progress = 0
+        max_weight = 1
+
+        for i in allTask:
+            max_weight = max(max_weight, i.weight)
+        
+        for i in allTask:
+            cumulative_progress += int(i.initial)/int(i.target) * (i.weight/max_weight)
+            date[i.date.weekday()] += round(int(i.initial)/int(i.target)*100, 2)
+            jumlah[i.date.weekday()] += 1
+        
+
+
+        context = {
+            'monday': round(date[0]/max(1, jumlah[0]), 2),
+            'tuesday': round(date[1]/max(1, jumlah[1]), 2),
+            'wednesday': round(date[2]/max(1, jumlah[2]), 2),
+            'thursday': round(date[3]/max(1, jumlah[3]),2),
+            'friday': round(date[4]/max(1, jumlah[4]),2),
+            'saturday': round(date[5]/max(1, jumlah[5]),2),
+            'sunday': round(date[6]/max(1, jumlah[6]),2),
+        }
+        return render(request, 'grafik.html', context)
+
+
